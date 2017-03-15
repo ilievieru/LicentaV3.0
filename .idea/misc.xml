@@ -7,7 +7,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/licenta-corola/pom.xml" />
-        <option value="$PROJECT_DIR$/processes/pom.xml" />
+        <option value="$PROJECT_DIR$/voting-system/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
