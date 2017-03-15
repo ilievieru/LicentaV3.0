@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="styles/app.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>COROLA</title>
+</head>
+<body ng-app="corola">
+
+<div class="main" ng-controller="homeController">
+    <header class="staticHeader"><h1>Corola</h1></header>
+    <div ng-cloak="" class="menu">
+        <md-content>
+            <md-tabs md-dynamic-height="" md-border-bottom="">
+                <md-tab label="About">
+                    <md-content class="md-padding">
+                        <nav>
+                            <ul>
+                                <button class="corolaNav" ng-click="chooseAbout('first')" ng-class="{'current': first}">
+                                    What is Corola
+                                </button>
+                                <button class="corolaNav" ng-click="chooseAbout('second')"
+                                        ng-class="{'current': second}">When it is done
+                                </button>
+                                <button class="corolaNav" ng-click="chooseAbout('third')" ng-class="{'current': third}">
+                                    What is the purpose of this app
+                                </button>
+
+                            </ul>
+                        </nav>
+                        <article>
+                            <h2>Welcome to COROLA</h2>
+                            <p>The resources from backEnd are: {{backResources}}</p>
+                        </article>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Corola corpus">
+                    <md-content class="md-padding">
+                        <nav>
+                            <ul>
+                                <button class="corolaNav" ng-class="{'current': manual}"
+                                        ng-click="choseFilter('Manual')">Manual
+                                </button>
+                                <button class="corolaNav" ng-class="{'current': semiAutomatic}"
+                                        ng-click="choseFilter('SemiAutomatic')">Semi Automatic
+                                </button>
+                                <button class="corolaNav" ng-class="{'current': automatic}"
+                                        ng-click="choseFilter('Automatic')">Automatic
+                                </button>
+                            </ul>
+                        </nav>
+                        <article style="overflow:visible;">
+                            <div style="display:inline">
+                                Chose input type:
+                                <div class="dropdown">
+                                    <a class="dropbtn">{{inputType}}</a>
+                                    <div class="dropdown-content">
+                                        <a ng-click="choseInputType('file')">File</a>
+                                        <a ng-click="choseInputType('text')">Text</a>
+                                    </div>
+                                </div>
+                                <a ng-show="automatic">Chose run type: </a>
+                                <div ng-show="automatic" class="dropdown">
+                                    <a class="dropbtn">{{chosenVersion}}</a>
+                                    <div class="dropdown-content">
+                                        <a ng-click="choseVersion('Latest')">Latest version</a>
+                                        <a ng-click="choseVersion('First')">First version</a>
+                                        <a ng-click="choseVersion('Common')">Most Common version</a>
+                                    </div>
+                                </div>
+                                <a ng-controller="startController" ng-show="ready()" ng-click="statProcess()"
+                                   class="corolaNav start" type="submit" style="margin-left:10px;">Start</a>
+                                <p>{{startResources}}</p>
+                            </div>
+                            <div ng-include="'views/corolaMain.html'"></div>
+
+                        </article>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Details">
+                    <md-content class="md-padding">
+                        <nav>
+                            <ul>
+                                <button class="corolaNav" ng-click="chooseDetails('Author')"
+                                        ng-class="{'current': author}">Author
+                                </button>
+                                <button class="corolaNav" ng-click="chooseDetails('Resources')"
+                                        ng-class="{'current': resources}">Resources
+                                </button>
+                                <button class="corolaNav" ng-click="chooseDetails('Contact')"
+                                        ng-class="{'current': contact}">Contact
+                                </button>
+                            </ul>
+                        </nav>
+                        <article>
+                            <form action="views/helloFile.html">
+                                <input type="submit" value="Go to helloFile"/>
+                            </form>
+                        </article>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Corola UI">
+                    <md-content class="md-padding">
+                        <nav>
+                            <ul>
+                                <button class="corolaNav" ng-click="uiFilter('ui')" ng-class="{'current': ui}">App
+                                </button>
+                                <button class="corolaNav" ng-click="uiFilter('chart')" ng-class="{'current': chart}">
+                                    Chart
+                                </button>
+                            </ul>
+                        </nav>
+                        <article>
+                            <div ng-include="'views/corolaApp.html'" ng-show="ui"></div>
+                        </article>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+    <footer>Author © Vieru Ilie Constantin</footer>
+</div>
+
+
+</body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="controller/mainController.js"></script>
+<script src="controller/startController.js"></script>
+<script src="controller/popupController.js"></script>
+
+</html>

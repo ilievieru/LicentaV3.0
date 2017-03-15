@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/LicentaV2.0.iml" filepath="$PROJECT_DIR$/.idea/LicentaV2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/processes/com.processes.calendar.iml" filepath="$PROJECT_DIR$/processes/com.processes.calendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/licenta-calendar/licenta-corola.iml" filepath="$PROJECT_DIR$/licenta-calendar/licenta-corola.iml" />
+    </modules>
+  </component>
+</project>

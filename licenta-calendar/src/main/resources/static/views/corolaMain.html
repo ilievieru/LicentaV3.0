@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="styles/app.css">
+<div class="content" style="margin-left:10px; margin-top:10px;">
+    <div ng-show="text" id="textInput">
+        <textarea cols="100" rows="10"></textarea>
+    </div>
+
+    <form ng-show="file" enctype="multipart/form-data" action="upload" method="POST">
+        Choose a text file to upload: <input id="textFileToUpload" name="file" accept="" type="file" multiple="" /><br />
+        Choose a xml file to upload: <input name="file" accept=".xml" type="file" multiple="" /><br />
+        <input id= "upload"class="corolaNav"  type="submit" value="Upload File" />
+    </form>
+
+</div>
