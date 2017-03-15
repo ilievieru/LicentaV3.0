@@ -9,7 +9,7 @@
 <body ng-app="corola">
 
 <div class="main" ng-controller="homeController">
-    <header class="staticHeader"><h1>Corola</h1></header>
+    <header class="staticHeader"><h1>Calendar Voting System</h1></header>
     <div ng-cloak="" class="menu">
         <md-content>
             <md-tabs md-dynamic-height="" md-border-bottom="">
@@ -18,24 +18,24 @@
                         <nav>
                             <ul>
                                 <button class="corolaNav" ng-click="chooseAbout('first')" ng-class="{'current': first}">
-                                    What is Corola
+                                    What is this application?
                                 </button>
                                 <button class="corolaNav" ng-click="chooseAbout('second')"
-                                        ng-class="{'current': second}">When it is done
+                                        ng-class="{'current': second}">When it is done?
                                 </button>
                                 <button class="corolaNav" ng-click="chooseAbout('third')" ng-class="{'current': third}">
-                                    What is the purpose of this app
+                                    What is the purpose of this app?
                                 </button>
 
                             </ul>
                         </nav>
                         <article>
-                            <h2>Welcome to COROLA</h2>
+                            <h2>Welcome</h2>
                             <p>The resources from backEnd are: {{backResources}}</p>
                         </article>
                     </md-content>
                 </md-tab>
-                <md-tab label="Corola corpus">
+                <md-tab label="Application">
                     <md-content class="md-padding">
                         <nav>
                             <ul>
@@ -71,9 +71,8 @@
                                 </div>
                                 <a ng-controller="startController" ng-show="ready()" ng-click="statProcess()"
                                    class="corolaNav start" type="submit" style="margin-left:10px;">Start</a>
-                                <p>{{startResources}}</p>
                             </div>
-                            <div ng-include="'views/corolaMain.html'"></div>
+                            <div ng-include="'views/main.html'"></div>
 
                         </article>
                     </md-content>
@@ -97,22 +96,6 @@
                             <form action="views/helloFile.html">
                                 <input type="submit" value="Go to helloFile"/>
                             </form>
-                        </article>
-                    </md-content>
-                </md-tab>
-                <md-tab label="Corola UI">
-                    <md-content class="md-padding">
-                        <nav>
-                            <ul>
-                                <button class="corolaNav" ng-click="uiFilter('ui')" ng-class="{'current': ui}">App
-                                </button>
-                                <button class="corolaNav" ng-click="uiFilter('chart')" ng-class="{'current': chart}">
-                                    Chart
-                                </button>
-                            </ul>
-                        </nav>
-                        <article>
-                            <div ng-include="'views/corolaApp.html'" ng-show="ui"></div>
                         </article>
                     </md-content>
                 </md-tab>
