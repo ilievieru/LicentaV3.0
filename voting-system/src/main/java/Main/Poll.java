@@ -4,26 +4,19 @@ package Main;
 import VotingSystems.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class Poll {
 
-    private final String COMMAND = "\\go";
+    private final String COMMAND = "run";
     private VotingSystem system;
 
-    public Poll() {
+    public Poll(List<String> input, String command, int choice) {
         System.out.println(
-                "Enter 1 for instant runoff voting, 2 for the Borda Count, 3 for" +
-                        "\n the Condorcet Method, and any other int for plurality voting");
+                "Command type: \n1 for instant runoff voting \n2 for the Borda Count \n3 for" +
+                        " the Condorcet Method \nAny other int for plurality voting");
 
-        Scanner scanner = new Scanner(System.in);
-
-        int choice = scanner.nextInt();
-
-        System.out.println(
-                "Enter input now. Then enter " + COMMAND + " to compute results.");
-
-        ArrayList<Ballot> b = parseInput();
+          ArrayList<Ballot> b = parseInput(input, command);
         switch (choice) {
             case 1:
                 system = new InstantRunoff(b.toArray(new Ballot[b.size()]));
@@ -42,47 +35,35 @@ public class Poll {
         System.out.println(system.results());
     }
 
-    private ArrayList<Ballot> parseInput() {
+    private ArrayList<Ballot> parseInput(List<String> input, String command) {
         ArrayList<Ballot> ballots = new ArrayList<Ballot>();
 
-        Scanner input = new Scanner(System.in);
-
         String ballot;
+        int x = 0;
+        while (x < input.size()) {
+            if (input.get(x).trim() != null) {
+                ballot = input.get(x).trim();
 
-        while ((ballot = input.nextLine().trim()) != null) {
-
-            if (ballot.equalsIgnoreCase(COMMAND)) {
-                input.close();
-                return ballots;
-            }
-
-            int n = 1;
-
-            int index = ballot.indexOf(' ');
-
-            if (index != -1 && index < ballot.length() - 1) {
-                try {
-                    n = Integer.parseInt(ballot.substring(0, index));
-                    ballot = ballot.substring(index);
-                } catch (NumberFormatException e) {
-                    n = 1;
+                if (ballot.equalsIgnoreCase(COMMAND)) {
+                    return ballots;
                 }
-
-            }
-
-            for (int i = 0; i < n; i++) {
-                if (ballot.length() > 0)
-                    ballots.add(new Ballot(ballot));
+                int n = 1;
+                int index = ballot.indexOf(' ');
+                if (index != -1 && index < ballot.length() - 1) {
+                    try {
+                        n = Integer.parseInt(ballot.substring(0, index));
+                        ballot = ballot.substring(index);
+                    } catch (NumberFormatException e) {
+                        n = 1;
+                    }
+                }
+                for (int i = 0; i < n; i++) {
+                    if (ballot.length() > 0)
+                        ballots.add(new Ballot(ballot));
+                }
+                x++;
             }
         }
-
-        input.close();
-
         return ballots;
-
-    }
-
-    public static void main(String[] args) {
-        Poll p = new Poll();
     }
 }
