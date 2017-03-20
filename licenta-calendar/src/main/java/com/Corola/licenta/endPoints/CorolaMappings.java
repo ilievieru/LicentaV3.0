@@ -1,5 +1,7 @@
 package com.Corola.licenta.endPoints;
 
+import Main.Poll;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -70,4 +73,13 @@ public class CorolaMappings {
         }
     }
 
+    @Timed
+    @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
+    public Map<String, String> getResults(@RequestParam(value = "input") List<String> input){
+        Map<String, String> data = new HashMap<String, String>();
+        String command = "run";
+        Poll p = new Poll(input, command, 2);
+        data.put("Winner",p.runPool());
+        return data;
+    }
 }
