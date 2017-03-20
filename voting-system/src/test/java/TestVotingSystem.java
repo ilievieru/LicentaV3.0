@@ -18,6 +18,7 @@ public class TestVotingSystem {
 
         String command = "run";
         Poll p = new Poll(input, command, 1);
+        p.runPool();
     }
 
     @Test
@@ -30,6 +31,7 @@ public class TestVotingSystem {
 
         String command = "run";
         Poll p = new Poll(input, command, 2);
+        p.runPool();
     }
     @Test
     public void testCondorcet() {
@@ -41,6 +43,7 @@ public class TestVotingSystem {
 
         String command = "run";
         Poll p = new Poll(input, command, 3);
+        p.runPool();
     }
     @Test
     public void testPlurality() {
@@ -52,5 +55,6 @@ public class TestVotingSystem {
 
         String command = "run";
         Poll p = new Poll(input, command, 4);
+        p.runPool();
     }
 }
