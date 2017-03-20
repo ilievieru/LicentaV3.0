@@ -22,6 +22,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="licenta-calendar" />
         <module name="licenta-corola" />
         <module name="voting-system" />
       </profile>
@@ -36,6 +37,7 @@
       <module name="com.COROLA.WebFdgRo" target="1.5" />
       <module name="com.COROLA.WebNpChunkerRo" target="1.5" />
       <module name="Corola" target="1.8" />
+      <module name="licenta-calendar" target="1.8" />
       <module name="licenta-corola" target="1.8" />
       <module name="voting-system" target="1.5" />
     </bytecodeTargetLevel>

@@ -2,18 +2,19 @@
     <md-content>
         <div>
             <md-tabs md-dynamic-height="true">
-                <md-tab label="Requester">
-                    {{testFirstTab}}
-                    Test
+                <md-tab label="Requester"> Selected Day:
+                    {{selectedDay.date._d}}
                 </md-tab>
-                <md-tab label="Manager">
+                <md-tab label="Results">
                     Test tab
+                    <div ng-controller="startController">1) The Result is: {{results}}</div>
+
                 </md-tab>
                 <md-tab label="Controller">
                     Test tab
                 </md-tab>
                 <md-tab label="Details">
-                    Testtab
+                    Test tab
                 </md-tab>
                 <md-tab></md-tab>
             </md-tabs>

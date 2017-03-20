@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/licenta-corola/pom.xml" />
         <option value="$PROJECT_DIR$/voting-system/pom.xml" />
+        <option value="$PROJECT_DIR$/licenta-calendar/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
