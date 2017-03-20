@@ -1,0 +1,288 @@
+.calendarTemplate {
+    float: left;
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: white;
+    width: 400px;
+    border: solid 1px #D3D3D3;
+    margin = auto;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mymove {
+    from {
+        background-color: #87CEFA;
+    }
+    to {
+        background-color: #4169E1;
+    }
+}
+
+.header {
+    -webkit-animation: mymove 100s infinite; /* Chrome, Safari, Opera */
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
+    float: left;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+i.fa.fa-angle-left {
+    border-radius: 50%;
+    float: left;
+    width: 60px;
+    font-size: 1.25em;
+    font-weight: bold;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 0 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+i.fa.fa-angle-right {
+    border-radius: 50%;
+    float: right;
+    width: 60px;
+    font-size: 1.25em;
+    font-weight: bold;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 0 10px;
+    cursor: pointer;
+    text-align: right;
+    margin-left: 40px *-1;
+}
+
+span.currentMonth.ng-binding {
+    width: 200%;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-left: 40px;
+    margin-left: 40px *-1;
+    text-align: center;
+    padding-right: 40px;
+    color: inherit;
+}
+
+div.week {
+    float: left;
+    width: 100%;
+    border-top: solid 1px #F0FFFF;
+}
+
+span.day {
+    float: left;
+    width: 55px;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    border-left: solid 1px #F0FFFF;
+    font-size: 1em;
+    text-align: center;
+
+    height: 55px;
+    line-height: 55px;
+    display: inline-block;
+    vertical-align: middle;
+
+    background: white;
+    cursor: pointer;
+    color: black;
+}
+
+span.today {
+    background: #F5F5F5;
+    border-radius: 50%;
+}
+
+span.different-month {
+    color: #C0C0C0;
+}
+
+span.selected {
+    color: #0000CD;
+    border-radius: 50%;
+}
+
+span.approved {
+    color: #00FF00;
+}
+
+span.declined {
+    color: red;
+}
+
+span.running {
+    color: #FFD700;
+}
+
+span.day:hover {
+    background: #F5F5F5;
+    border-radius: 50%;
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+span.currentMonth:hover {
+    color: #36a7c4
+}
+
+i:hover {
+    color: #36a7c4
+}
+
+/*Slide efect*/
+/*left*/
+@-webkit-keyframes slideInLeft {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/*unused*/
+@-webkit-keyframes slideOutLeft {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+/*unused*/
+@keyframes slideOutLeft {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100 &, 0, 0);
+    }
+}
+
+div.week.ng-scope.Left.ng-enter {
+    -webkit-animation: slideInLeft 0.5s both ease-in;
+    -moz-animation: slideInLeft 0.5s both ease-in;
+    animation: slideInLeft 0.5s both ease-in;
+}
+
+div.week.ng-scope.Left.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease-in;
+    -moz-animation: slideOutLeft 0.5s both ease-in;
+    animation: slideOutLeft 0.5s both ease-in;
+    display: none;
+}
+
+/*Right*/
+@-webkit-keyframes slideInRight {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/*unused*/
+@-webkit-keyframes slideOutRight {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+/*unused*/
+@keyframes slideOutRight {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+div.week.ng-scope.Right.ng-enter {
+
+    -webkit-animation: slideInRight 0.5s both ease-in;
+    -moz-animation: slideInRight 0.5s both ease-in;
+    animation: slideInRight 0.5s both ease-in;
+
+}
+
+div.week.ng-scope.Right.ng-leave {
+    -webkit-animation: slideOutRight 0.5s both ease-in;
+    -moz-animation: slideOutRight 0.5s both ease-in;
+    animation: slideOutRight 0.5s both ease-in;
+    display: none;
+}

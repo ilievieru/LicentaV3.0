@@ -5,5 +5,5 @@ app.controller("startController", function ($scope, $http) {
         return true;
     }
 
-    $scope.statProcess = function () {
+    $scope.statProcess = function () {}
 });
