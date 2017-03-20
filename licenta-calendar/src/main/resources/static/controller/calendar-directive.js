@@ -7,6 +7,8 @@ angular.module('corola').directive("calendar", ['$rootScope', '$http', function 
         },
         link: function (scope, rootScope, http) {
             scope.popup = false;
+            testFirstTab = [];
+            var i = 0;
             scope.moveLeft = false;
             scope.moveRight = false;
             scope.isNumber = true;
@@ -21,10 +23,8 @@ angular.module('corola').directive("calendar", ['$rootScope', '$http', function 
             scope.report = false;
             scope.select = function (day) {
                 scope.selectedDay = day;
-                testFirstTab = day.date._d;
-                console.log(testFirstTab);
-                console.log("select day");
-                console.log(day);
+                testFirstTab [i] = day.date._d;
+                i++;
                 scope.popup = true;
             };
 
