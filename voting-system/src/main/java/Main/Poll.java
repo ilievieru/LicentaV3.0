@@ -10,8 +10,17 @@ public class Poll {
 
     private final String COMMAND = "run";
     private VotingSystem system;
+    List<String> input;
+    String command;
+    int choice;
 
     public Poll(List<String> input, String command, int choice) {
+        this.input = input;
+        this.choice = choice;
+        this.command = command;
+    }
+
+    public String runPool(){
         System.out.println(
                 "Command type: \n1 for instant runoff voting \n2 for the Borda Count \n3 for" +
                         " the Condorcet Method \nAny other int for plurality voting");
@@ -33,6 +42,7 @@ public class Poll {
 
         System.out.println("WINNER: " + system.computeWinner());
         System.out.println(system.results());
+        return system.results();
     }
 
     private ArrayList<Ballot> parseInput(List<String> input, String command) {
