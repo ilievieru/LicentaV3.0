@@ -20,8 +20,7 @@
               ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}</span>
     </div>
 </div>
-<div ng-show="report" style="margin-left: 12cm;">
-<!--
-    <div ng-include="'views/popup/myAccount-popup.html'"></div>
--->
+<div ng-show="popup" style="margin-left: 12cm;">
+    <div ng-include="'views/calendarPopup.html'"></div>
+
 </div>
