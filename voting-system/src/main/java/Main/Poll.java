@@ -6,88 +6,83 @@ import VotingSystems.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * 
- * @author Warren Godone-Maresca
- * 
- * A demonstration of a program that gets multiple ballots from a single line.
- *
- */
 public class Poll {
 
-	private final String COMMAND = "\\go";
-	private VotingSystem system;
+    private final String COMMAND = "\\go";
+    private VotingSystem system;
 
-	public Poll(){
-		System.out.println(
-				"Enter 1 for instant runoff voting, 2 for the Borda Count, 3 for" +
-				"\n the Condorcet Method, and any other int for plurality voting");
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		int choice = scanner.nextInt();
-		
-		//scanner.close();
-		
-		System.out.println(
-				"Enter input now. Then enter " + COMMAND + " to compute results.");
-		
-		ArrayList<Ballot> b = parseInput();
-		switch(choice){
-			case 1 : system = new InstantRunoff(b.toArray(new Ballot[b.size()]));
-			break;
-			case 2: system = new Borda(b.toArray(new Ballot[b.size()]));
-			break;
-			case 3: system = new Condorcet(b.toArray(new Ballot[b.size()]));
-			break;
-			default: system = new Plurality(b.toArray(new Ballot[b.size()]));
-		}
-		
-		System.out.println("WINNER: " + system.computeWinner());
-		System.out.println(system.results());
-	}
+    public Poll() {
+        System.out.println(
+                "Enter 1 for instant runoff voting, 2 for the Borda Count, 3 for" +
+                        "\n the Condorcet Method, and any other int for plurality voting");
 
-	private ArrayList<Ballot> parseInput(){
-		ArrayList<Ballot> ballots = new ArrayList<Ballot>();
+        Scanner scanner = new Scanner(System.in);
 
-		Scanner input = new Scanner(System.in);
+        int choice = scanner.nextInt();
 
-		String ballot;
+        System.out.println(
+                "Enter input now. Then enter " + COMMAND + " to compute results.");
 
-		while((ballot = input.nextLine().trim()) != null){
-			
-			if(ballot.equalsIgnoreCase(COMMAND)){
-				input.close();
-				return ballots;
-			}
+        ArrayList<Ballot> b = parseInput();
+        switch (choice) {
+            case 1:
+                system = new InstantRunoff(b.toArray(new Ballot[b.size()]));
+                break;
+            case 2:
+                system = new Borda(b.toArray(new Ballot[b.size()]));
+                break;
+            case 3:
+                system = new Condorcet(b.toArray(new Ballot[b.size()]));
+                break;
+            default:
+                system = new Plurality(b.toArray(new Ballot[b.size()]));
+        }
 
-			int n = 1; //Number of ballots in the line
+        System.out.println("WINNER: " + system.computeWinner());
+        System.out.println(system.results());
+    }
 
-			int index = ballot.indexOf(' ');
+    private ArrayList<Ballot> parseInput() {
+        ArrayList<Ballot> ballots = new ArrayList<Ballot>();
 
-			if(index != - 1 && index < ballot.length() - 1){
-				try{
-					n = Integer.parseInt(ballot.substring(0, index));
-					ballot = ballot.substring(index);
-				} catch(NumberFormatException e){ 
-					n = 1;//try removing this
-				}	
+        Scanner input = new Scanner(System.in);
 
-			}
+        String ballot;
 
-			for(int i = 0; i < n; i++){
-				if(ballot.length() > 0)
-					ballots.add(new Ballot(ballot));
-			}
-		}
+        while ((ballot = input.nextLine().trim()) != null) {
 
-		input.close();
+            if (ballot.equalsIgnoreCase(COMMAND)) {
+                input.close();
+                return ballots;
+            }
 
-		return ballots;
+            int n = 1;
 
-	}
+            int index = ballot.indexOf(' ');
 
-	public static void main(String[] args){
-		Poll p = new Poll();
-	}
+            if (index != -1 && index < ballot.length() - 1) {
+                try {
+                    n = Integer.parseInt(ballot.substring(0, index));
+                    ballot = ballot.substring(index);
+                } catch (NumberFormatException e) {
+                    n = 1;
+                }
+
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (ballot.length() > 0)
+                    ballots.add(new Ballot(ballot));
+            }
+        }
+
+        input.close();
+
+        return ballots;
+
+    }
+
+    public static void main(String[] args) {
+        Poll p = new Poll();
+    }
 }
