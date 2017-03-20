@@ -22,8 +22,8 @@ public class Poll {
 
     public String runPool(){
         System.out.println(
-                "Command type: \n1 for instant runoff voting \n2 for the Borda Count \n3 for" +
-                        " the Condorcet Method \nAny other int for plurality voting");
+                "Command type: \n1 for instant runoff voting \n2 for the Borda Count \n3 for " +
+                        "the Condorcet Method \nAny other int for plurality voting");
 
           ArrayList<Ballot> b = parseInput(input, command);
         switch (choice) {
