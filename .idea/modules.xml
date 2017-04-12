@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LicentaV2.0.iml" filepath="$PROJECT_DIR$/.idea/LicentaV2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/licenta-calendar/licenta-calendar.iml" filepath="$PROJECT_DIR$/licenta-calendar/licenta-calendar.iml" />
-      <module fileurl="file://C:\Users\p3700664\IdeaProjects\LicentaV3.0\licenta-calendar\licenta-calendar.iml" filepath="C:\Users\p3700664\IdeaProjects\LicentaV3.0\licenta-calendar\licenta-calendar.iml" />
       <module fileurl="file://C:\Users\p3700664\IdeaProjects\LicentaV3.0\licenta-calendar\licenta-corola.iml" filepath="C:\Users\p3700664\IdeaProjects\LicentaV3.0\licenta-calendar\licenta-corola.iml" />
       <module fileurl="file://$PROJECT_DIR$/voting-system/voting-system.iml" filepath="$PROJECT_DIR$/voting-system/voting-system.iml" />
     </modules>
