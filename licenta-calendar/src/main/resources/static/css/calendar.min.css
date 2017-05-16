@@ -1,3 +1,10 @@
+div.row{
+    text-align:center;
+}
+
+div.test, div.col-xs-5{
+    display:inline;
+}
 div.zabuto_calendar {
     margin: 0;
     padding: 0
