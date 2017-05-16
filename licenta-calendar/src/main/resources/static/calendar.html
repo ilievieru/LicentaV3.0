@@ -1,33 +1,104 @@
 <!DOCTYPE html>
+<!-- jQuery CDN -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<!-- Bootstrap CDN -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- Zabuto -->
+<link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+
+<!-- Zabuto Calendar -->
+<script src="js/zabuto_calendar.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/calendar.min.css">
+
+<script src="js/bootstrap.js"></script>
 <html>
 <head>
-    <title>CVS</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <!-- jQuery CDN -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Zabuto -->
-    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
-
-    <!-- Zabuto Calendar -->
-    <script src="js/zabuto_calendar.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/calendar.min.css">
-
+    <title>Calendar Voting System</title>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"/><!-- fontawesome -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/><!-- Bootstrap stylesheet -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/><!-- stylesheet -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--fonts-->
+    <link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
+
+<!-- header -->
+<header>
+    <div class="w3layouts-top-strip">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html"><span>Calendar </span>Voting System</a></h1>
+            </div>
+            <div class="w3ls-social-icons">
+                <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a class="pinterest" href="#"><i class="fa fa-pinterest-p"></i></a>
+                <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+            <div class="agileits-contact-info text-right">
+                <ul>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a
+                            href="mailto:info@example.com">calendarVotingSystem@gmail.com</a></li>
+                    <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>0744334042</li>
+                </ul>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a class="active" href="products.html">Products</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Short Codes <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="icons.html">Icons Page</a></li>
+                            <li><a href="typo.html">Typography</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- //navigation -->
+</header>
+<!-- //header -->
+
 <!-- container -->
 <div class="container example">
     <h1>
@@ -101,5 +172,49 @@
 </div>
 <!-- /container -->
 
+<!-- footer -->
+<div class="footer-top">
+    <div class="container">
+        <div class="col-md-3 w3ls-footer-top">
+            <h3>QUICK <span>LINKS</span></h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4 wthree-footer-top">
+            <h3>ADD<span>RESS</span></h3>
+            <ul>
+                <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Street General Henri Mathias
+                    Berthelot, nr. 16, Iasi
+                </li>
+                <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a
+                        href="mailto:info@example.com">calendarVotingSystem@gmail.com</a></li>
+                <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0744334042
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-5 w3l-footer-top">
+            <h3>NEWS<span>LETTER</span></h3>
+            <p>Do you like our product? If you want news about our project subscribe by introducing your email and you
+                will get news from us.</p>
+
+            <form action="#" method="post" class="newsletter">
+                <input class="email" type="email" placeholder="Your email..." required="">
+                <input type="submit" class="submit" value="">
+            </form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="footer-w3layouts">
+            <div class="agile-copy">
+                <p>© 2017 CVS. All rights reserved | Design by <a>Vieru Ilie Constantin</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 </body>
 </html>
