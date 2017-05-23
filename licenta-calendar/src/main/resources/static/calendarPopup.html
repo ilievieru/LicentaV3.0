@@ -1,0 +1,61 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-container" style="width: 600px;">
+    <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">Create an event</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">See all events</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">My events</button>
+    </div>
+
+    <div id="London" class="w3-container w3-border city">
+        <h2>Create a new event</h2>
+        <p>London is the capital city of England.</p>
+        <button class="button" style="vertical-align:middle">
+            <span>Add new event </span></button>
+        <div ng-include="'createNewEvent.html'"></div>
+    </div>
+
+    <div id="Paris" class="w3-container w3-border city" style="display:none">
+        <h2>See all events</h2>
+    </div>
+
+    <div id="Tokyo" class="w3-container w3-border city" style="display:none">
+        <h2>My events</h2>
+        <div style="display:inline">
+            Chose algorithm type:
+            <div class="dropdown">
+                <a class="dropbtn">{{inputType}}</a>
+                <div class="dropdown-content">
+                    <a ng-click="choseInputType('InstantRunOff')">InstantRunOff</a>
+                    <a ng-click="choseInputType('Borda')">Borda</a>
+                    <a ng-click="choseInputType('Condorcet')">Condorcet</a>
+                    <a ng-click="choseInputType('Plurality')">Plurality</a>
+                    <a ng-click="choseInputType('ALL')">ALL</a>
+                </div>
+            </div>
+        </div>
+        <button class="button" style="vertical-align:middle" ng-click="startProcessing()" ng-show="process">
+            <span>Process </span></button>
+        <div id="calendarDate"> {{testCalendar}}</div>
+    </div>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+
+
+</script>

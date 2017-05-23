@@ -1,0 +1,56 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+input[type=text],textarea, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+</style>
+<div>
+    <form action="">
+        <label for="fname">Event Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your event name...">
+
+        <label for="lname">Description</label>
+        <textarea type="text" id="lname" name="lastname" placeholder="Description..."></textarea>
+
+        <label for="country">Country</label>
+        <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+        </select>
+        <div ng-include="'createEventAddDate.html'"></div>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

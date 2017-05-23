@@ -75,10 +75,40 @@ public class CorolaMappings {
 
     @Timed
     @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getResults(@RequestParam(value = "input") List<String> input){
+    public Map<String, String> getBorda(@RequestParam(value = "input") List<String> input){
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 2);
+        data.put("Winner",p.runPool());
+        return data;
+    }
+
+    @Timed
+    @RequestMapping(value = "/InstantRunOffVotingEndpoint", method = RequestMethod.GET)
+    public Map<String, String> getInstantRunOff(@RequestParam(value = "input") List<String> input){
+        Map<String, String> data = new HashMap<String, String>();
+        String command = "run";
+        Poll p = new Poll(input, command, 1);
+        data.put("Winner",p.runPool());
+        return data;
+    }
+
+    @Timed
+    @RequestMapping(value = "/CondorcetVotingEndpoint", method = RequestMethod.GET)
+    public Map<String, String> getCondorcet(@RequestParam(value = "input") List<String> input){
+        Map<String, String> data = new HashMap<String, String>();
+        String command = "run";
+        Poll p = new Poll(input, command, 3);
+        data.put("Winner",p.runPool());
+        return data;
+    }
+
+    @Timed
+    @RequestMapping(value = "/PluralityVotingEndpoint", method = RequestMethod.GET)
+    public Map<String, String> getPlurality(@RequestParam(value = "input") List<String> input){
+        Map<String, String> data = new HashMap<String, String>();
+        String command = "run";
+        Poll p = new Poll(input, command, 4);
         data.put("Winner",p.runPool());
         return data;
     }

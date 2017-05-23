@@ -1,0 +1,19 @@
+<h2><a href="#" class="addTimeslot">Add Another Input Box</a></h2>
+
+<!-- Timeslot container -->
+<div id="timeslots">
+
+</div>
+
+<!-- Hidden field to keep track of number of timeslots -->
+<input type="hidden" name="timeslotCounter" id="timeslotCounter" />
+
+<!-- Timeslot template -->
+<script type="text/template" id="timeslot-input-box">
+    <p class="timeslot">
+        <label for="timeslot_{0}">
+            <input type="text" id="timeslot_{0}" name="timeslot_{0}" size="20" value="{1}" placeholder="Input Value" />
+        </label>
+        <a href="#" class="removeTimeslot">Delete</a>
+    </p>
+</script>
