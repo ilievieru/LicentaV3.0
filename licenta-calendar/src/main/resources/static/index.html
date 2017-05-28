@@ -1,25 +1,30 @@
-
-<!DOCTYPE HTML>
-<html>
 <head>
     <link href="css/logIn.css" rel="stylesheet" type="text/css" media="all"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"/><!-- fontawesome -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/><!-- Bootstrap stylesheet -->
     <meta name="keywords" content="Transparent Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
     <!--web-fonts-->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css' />
     <!--web-fonts-->
 </head>
 
-<body ng-app="LogIn">
+<body ng-app="LogIn" ng-controller = "authController">
 <!--header-->
+<div class="alert alert-info" role="alert" ng-show="beforeLogin">
+    <strong>Heads up!</strong> In order to have access you need to log in.
+</div>
+<div class="alert alert-danger" role="alert" ng-show="login">
+    <strong>Oh snap!</strong> Wrong username or password. Please try again.
+</div>
 <div class="header-w3l">
-    <h1> Transparent Login Form</h1>
+    <h1> Login Form</h1>
 </div>
 <!--//header-->
 
 <!--main-->
-<div class="main-content-agile" ng-controller = "authController">
+<div class="main-content-agile">
     <div class="sub-main-w3">
         <form action="#">
             <input placeholder="Username" id="userName" name="Name" class="user" type="text" required=""><br>
@@ -47,6 +52,3 @@
 
 <script src="controllers/calandarController.js"></script>
 <script src="controllers/authController.js"></script>
-
-
-</html>
