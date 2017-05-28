@@ -16,6 +16,7 @@ import java.util.List;
  * Created by P3700664 on 5/28/2017.
  */
 public class UsersXml {
+
     List<User> usersList;
 
     public UsersXml(String path) {
@@ -31,13 +32,14 @@ public class UsersXml {
             for (int i = 0; i < usersNumber; i++) {
 
                 NodeList user = users.item(i).getChildNodes();
-                String userName = user.item(1).getTextContent();
-                String firstName = user.item(3).getTextContent();
-                String lastName = user.item(5).getTextContent();
-                String password = user.item(7).getTextContent();
-                String securityLevel = user.item(9).getTextContent();
+                String userId = user.item(1).getTextContent();
+                String userName = user.item(3).getTextContent();
+                String firstName = user.item(5).getTextContent();
+                String lastName = user.item(7).getTextContent();
+                String password = user.item(9).getTextContent();
+                String securityLevel = user.item(11).getTextContent();
 
-                NodeList events = user.item(11).getChildNodes();
+                NodeList events = user.item(13).getChildNodes();
                 List<String> eventsList = new ArrayList<>();
                 int eventPos = 1;
                 for (int j = 1; j < events.getLength(); j++) {
@@ -47,7 +49,7 @@ public class UsersXml {
                     }
                 }
 
-                User userItem = new User(userName, firstName, lastName, password, securityLevel, eventsList);
+                User userItem = new User(userId, userName, firstName, lastName, password, securityLevel, eventsList);
                 usersList.add(userItem);
             }
         } catch (SAXException e) {
@@ -60,11 +62,31 @@ public class UsersXml {
     }
 
     public Boolean checkUserAuth(String userName, String userPassword) {
-        for (int user = 0; user < usersList.size(); user++){
-            if (userName.equals(usersList.get(user).getUserName()) && userPassword.equals(usersList.get(user).getPassword())){
+        for (int user = 0; user < usersList.size(); user++) {
+            if (userName.equals(usersList.get(user).getUserName()) && userPassword.equals(usersList.get(user).getPassword())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public User findUser(String id) {
+        User notFound = new User();
+        notFound.setFirstName("User not found");
+        for (int user = 0; user < usersList.size(); user++) {
+            if (id.equals(usersList.get(user).getUserId())) {
+                return usersList.get(user);
+            }
+        }
+        return notFound;
+    }
+
+    public void setUsersList(List<User> usersList) {
+        this.usersList = usersList;
+    }
+
+    public List<User> getUsersList() {
+
+        return usersList;
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
     <user>
+        <userId>1</userId>
         <userName>ilie.vieru</userName>
         <firstName>Vieru</firstName>
         <lastName>Ilie</lastName>
@@ -15,9 +16,70 @@
     </user>
 
     <user>
-        <userName>dobranici.alexandru</userName>
-        <firstName>Dobranici</firstName>
-        <lastName>Alexandru</lastName>
+        <userId>2</userId>
+        <userName>Test0.Test0</userName>
+        <firstName>Test</firstName>
+        <lastName>Test</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+
+    <user>
+        <userId>3</userId>
+        <userName>Test1.Test1</userName>
+        <firstName>Test1</firstName>
+        <lastName>Test1</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+
+    <user>
+        <userId>4</userId>
+        <userName>Test2.Test2</userName>
+        <firstName>Test2</firstName>
+        <lastName>Test2</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+
+    <user>
+        <userId>5</userId>
+        <userName>Test3.Test3</userName>
+        <firstName>Test3</firstName>
+        <lastName>Test3</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+
+    <user>
+        <userId>6</userId>
+        <userName>Test4.Test4</userName>
+        <firstName>Test4</firstName>
+        <lastName>Test4</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+
+    <user>
+        <userId>7</userId>
+        <userName>Test5.Test5</userName>
+        <firstName>Test5</firstName>
+        <lastName>Test5</lastName>
         <password>1234</password>
         <securityLevel>0</securityLevel>
         <events>

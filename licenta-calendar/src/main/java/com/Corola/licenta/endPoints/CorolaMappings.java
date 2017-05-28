@@ -1,6 +1,7 @@
 package com.Corola.licenta.endPoints;
 
 import Main.Poll;
+import com.Corola.licenta.entities.User;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,5 +126,21 @@ public class CorolaMappings {
             data.put("Succes", false);
 
         return data;
+    }
+
+    @Timed
+    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
+    public List<Map<String, String>> getUsers() {
+        com.Corola.licenta.entities.UsersXml usersXml = new com.Corola.licenta.entities.UsersXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Users.xml");
+
+        List<Map<String,String>> result = new ArrayList<>();
+        List<User> users = usersXml.getUsersList();
+        for (int i = 0; i < users.size(); i++) {
+            Map<String, String> data = new HashMap<>();
+            data.put("Id",users.get(i).getUserId());
+            data.put("Name",users.get(i).getFirstName() + " " + users.get(i).getLastName());
+            result.add(data);
+        }
+        return result;
     }
 }

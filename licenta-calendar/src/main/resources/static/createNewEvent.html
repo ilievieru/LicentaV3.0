@@ -34,6 +34,7 @@ input[type=submit]:hover {
   opacity: 0;
 }
 
+
 </style>
 <div>
     <form action="">
@@ -43,14 +44,13 @@ input[type=submit]:hover {
         <label for="lname">Description</label>
         <textarea type="text" id="lname" name="lastname" placeholder="Description..."></textarea>
 
-        <label for="country">Country</label>
-        <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-        </select>
+        <label for="users">Add Users</label>
+        <div id="users" ng-include="'addUserPopup.html'"></div>
+
         <div ng-include="'createEventAddDate.html'"></div>
 
         <input type="submit" value="Submit">
+
+        <a ng-click="addUsers()">Test function for users</a>
     </form>
 </div>

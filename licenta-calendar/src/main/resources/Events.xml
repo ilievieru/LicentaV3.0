@@ -1,0 +1,27 @@
+<events>
+    <event>
+        <eventId>1</eventId>
+        <name>Event de test</name>
+        <description>Description for an test event</description>
+        <users>
+            <userId>1</userId>
+            <userId>2</userId>
+        </users>
+        <dates>
+            <date>01.01.2017</date>
+            <date>02.01.2017</date>
+        </dates>
+    </event>
+    <event>
+        <eventId>2</eventId>
+        <name>Event de test2</name>
+        <description>Description for an test2 event</description>
+        <users>
+            <userId>1</userId>
+        </users>
+        <dates>
+            <date>11.01.2017</date>
+            <date>12.01.2017</date>
+        </dates>
+    </event>
+</events>

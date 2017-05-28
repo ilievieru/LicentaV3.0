@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="css/sol.css">
+<script type="text/javascript" src="controllers/sol.js"></script>
+<select id="my-select" name="character"  multiple="multiple">
+
+</select>
+
+<script type="text/javascript">
+/**
+ * Created by P3700664 on 5/28/2017.
+ */
+$(function () {
+    var test = "optiongroup";
+    var children = [];
+    var allUsers = [];
+    $.get("/allUsers", function (data, status) {
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].Id);
+            console.log(data[i].Name);
+
+            children.push({
+                'type': "option",
+                'value': data[i].Id,
+                'label': data[i].Name
+            });
+        }
+        for (var i = 0; i < children.length; i++) {
+            allUsers.push({
+                "type": "optiongroup",
+                "children": [
+                    {"type": "option", "value": children[i].value, "label": children[i].label}
+                ]
+            });
+        }
+        $('#my-select').searchableOptionList({
+            maxHeight: '250px',
+            data: allUsers
+
+        });
+    });
+});
+</script>

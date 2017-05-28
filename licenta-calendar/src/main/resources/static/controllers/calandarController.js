@@ -6,6 +6,7 @@ app.controller("calendarController", function ($scope, $http) {
     console.log("calendar controller working...");
     $scope.process = false;
     $scope.testCalendar = "Selected dates: ";
+    $scope.user = "user de test";
     var i = 0;
     var dateArray = [];
     $(document).ready(function () {
@@ -182,11 +183,11 @@ app.controller("calendarController", function ($scope, $http) {
     $scope.clickTest = function(){
         console.log("test");
     }
+
     /* add datepicker*/
     $(function () {
         initDynamicTimeslots();
     });
-
 
     function initDynamicTimeslots() {
         // All required jQuery objects
@@ -249,4 +250,37 @@ app.controller("calendarController", function ($scope, $http) {
         });
     };
     /*---------*/
+
+
+    /*-----User add -----*/
+  $scope.addUsers = function () {
+      $scope.data =  [
+          {
+              "type": "optiongroup",
+              "label": "The Griffins",
+              "children": [
+                  {"type": "option", "value": "Peter", "label": "Peter Griffin"},
+                  {"type": "option", "value": "Lois", "label": "Lois Griffin"},
+                  {"type": "option", "value": "Chris", "label": "Chris Griffin"},
+                  {"type": "option", "value": "Meg", "label": "Meg Griffin"},
+                  {"type": "option", "value": "Stewie", "label": "Stewie Griffin"}
+              ]
+          }];
+      /* users.type = "optiongroup";
+       users.label = "users";
+       users.children.type = "option";
+       users.children.value = "Ilie";
+       users.children.lablel = "Ilie vieru";*/
+      console.log($scope.data);
+        $http({
+                    method: 'GET',
+                    url: '/allUsers'
+                })
+                    .success(function (results) {
+                        console.log(results);
+                    })
+                    .error(function () {
+                        console.log("error");
+                    });
+  }
 });
