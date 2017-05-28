@@ -179,7 +179,9 @@ app.controller("calendarController", function ($scope, $http) {
         }
     }
 
-
+    $scope.clickTest = function(){
+        console.log("test");
+    }
     /* add datepicker*/
     $(function () {
         initDynamicTimeslots();

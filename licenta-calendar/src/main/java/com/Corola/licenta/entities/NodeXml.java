@@ -14,10 +14,10 @@ import java.io.IOException;
  * Created by P3700664 on 12/7/2016.
  */
 public class NodeXml {
-    private String name;
-    private String version;
-    private String use;
-    private String level;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private String securityLevel;
 
 
     public NodeXml(String path) {
@@ -26,14 +26,14 @@ public class NodeXml {
             domFactory.setIgnoringComments(true);
             DocumentBuilder builder = domFactory.newDocumentBuilder();
             Document doc = builder.parse(new File(path));
-            NodeList element = doc.getElementsByTagName("name");
-            name = element.item(0).getTextContent();
-            NodeList element1 = doc.getElementsByTagName("version");
-            version = element1.item(0).getTextContent();
-            NodeList element2 = doc.getElementsByTagName("use");
-            use = element2.item(0).getTextContent();
-            NodeList element3 = doc.getElementsByTagName("level");
-            level = element3.item(0).getTextContent();
+            NodeList element = doc.getElementsByTagName("firstName");
+            firstName = element.item(0).getTextContent();
+            NodeList element1 = doc.getElementsByTagName("lastName");
+            lastName = element1.item(0).getTextContent();
+            NodeList element2 = doc.getElementsByTagName("password");
+            password = element2.item(0).getTextContent();
+            NodeList element3 = doc.getElementsByTagName("securityLevel");
+            securityLevel = element3.item(0).getTextContent();
 
 
         } catch (SAXException e) {
@@ -45,35 +45,36 @@ public class NodeXml {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getVersion() {
-        return version;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getUse() {
-        return use;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUse(String use) {
-        this.use = use;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getLevel() {
-        return level;
+    public String getSecurityLevel() {
+        return securityLevel;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setSecurityLevel(String securityLevel) {
+            this.securityLevel = securityLevel;
     }
+
 }

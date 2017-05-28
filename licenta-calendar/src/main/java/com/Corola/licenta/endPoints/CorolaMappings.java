@@ -75,41 +75,54 @@ public class CorolaMappings {
 
     @Timed
     @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getBorda(@RequestParam(value = "input") List<String> input){
+    public Map<String, String> getBorda(@RequestParam(value = "input") List<String> input) {
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 2);
-        data.put("Winner",p.runPool());
+        data.put("Winner", p.runPool());
         return data;
     }
 
     @Timed
     @RequestMapping(value = "/InstantRunOffVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getInstantRunOff(@RequestParam(value = "input") List<String> input){
+    public Map<String, String> getInstantRunOff(@RequestParam(value = "input") List<String> input) {
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 1);
-        data.put("Winner",p.runPool());
+        data.put("Winner", p.runPool());
         return data;
     }
 
     @Timed
     @RequestMapping(value = "/CondorcetVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getCondorcet(@RequestParam(value = "input") List<String> input){
+    public Map<String, String> getCondorcet(@RequestParam(value = "input") List<String> input) {
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 3);
-        data.put("Winner",p.runPool());
+        data.put("Winner", p.runPool());
         return data;
     }
 
     @Timed
     @RequestMapping(value = "/PluralityVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getPlurality(@RequestParam(value = "input") List<String> input){
+    public Map<String, String> getPlurality(@RequestParam(value = "input") List<String> input) {
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 4);
-        data.put("Winner",p.runPool());
+        data.put("Winner", p.runPool());
+        return data;
+    }
+
+    @Timed
+    @RequestMapping(value = "/Auth", method = RequestMethod.GET)
+    public Map<String, Boolean> auth(@RequestParam(value = "userName") String username, @RequestParam(value = "password") String password) {
+        Map<String, Boolean> data = new HashMap<String, Boolean>();
+        com.Corola.licenta.entities.UsersXml usersXml = new com.Corola.licenta.entities.UsersXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Users.xml");
+        if (usersXml.checkUserAuth(username, password))
+            data.put("Success", true);
+        else
+            data.put("Succes", false);
+
         return data;
     }
 }

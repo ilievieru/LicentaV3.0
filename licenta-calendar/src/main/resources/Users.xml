@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+    <user>
+        <userName>ilie.vieru</userName>
+        <firstName>Vieru</firstName>
+        <lastName>Ilie</lastName>
+        <password>1234</password>
+        <securityLevel>1</securityLevel>
+        <events>
+            <id>no events</id>
+            <id>event 2</id>
+            <id>event 3</id>
+            <id>event 4</id>
+        </events>
+    </user>
+
+    <user>
+        <userName>dobranici.alexandru</userName>
+        <firstName>Dobranici</firstName>
+        <lastName>Alexandru</lastName>
+        <password>1234</password>
+        <securityLevel>0</securityLevel>
+        <events>
+            <id>no events</id>
+        </events>
+    </user>
+</users>

@@ -11,8 +11,9 @@ public class NodeXml {
 
     @Test
     public void testNode(){
-        com.Corola.licenta.entities.NodeXml nodeXml = new com.Corola.licenta.entities.NodeXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV2.0\\processes\\discourse-parser\\src\\main\\resources\\metadata.xml");
-        System.out.println(nodeXml.getName());
-        assertEquals(nodeXml.getName(),"DiscourseParser");
+        com.Corola.licenta.entities.UsersXml usersXml = new com.Corola.licenta.entities.UsersXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Users.xml");
+        if(usersXml.checkUserAuth("ilie.vieru", "1234")){
+            System.out.println("User correct");
+        }
     }
 }
