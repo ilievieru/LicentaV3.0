@@ -5,6 +5,8 @@ var app = angular.module("CVS", ['ngMaterial']);
 app.controller("calendarController", function ($scope, $http) {
     console.log("calendar controller working...");
 
+    $scope.userName = document.getElementById("userName").value;
+    console.log($scope.userName);
     var makeItGreenIndex = 0;
     /*This var is to set up green color on vote. See all events */
     $scope.process = false;

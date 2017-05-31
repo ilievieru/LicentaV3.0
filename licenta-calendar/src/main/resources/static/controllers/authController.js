@@ -1,4 +1,4 @@
-var app = angular.module("LogIn", ['ngMaterial']);
+/*var app = angular.module("LogIn", ['ngMaterial']);*/
 app.controller("authController", function ($scope, $http) {
     console.log("authController...");
     $scope.login = false;
