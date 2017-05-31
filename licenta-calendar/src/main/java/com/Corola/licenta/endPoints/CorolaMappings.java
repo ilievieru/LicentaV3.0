@@ -1,6 +1,7 @@
 package com.Corola.licenta.endPoints;
 
 import Main.Poll;
+import com.Corola.licenta.entities.Event;
 import com.Corola.licenta.entities.User;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ public class CorolaMappings {
 
     @RequestMapping(value = "/secondResources", method = RequestMethod.GET)
     public Map<String, String> getSecondResources() {
-
+        logger.info("getSecondResources ... ");
         Map<String, String> data = new HashMap<String, String>();
         data.put("first", "secondValues");
         return data;
@@ -36,6 +37,7 @@ public class CorolaMappings {
 
     @RequestMapping(value = "/firstResources", method = RequestMethod.GET)
     public Map<String, String> getFirstResource() {
+        logger.info("getFirstResource ... ");
         Map<String, String> data = new HashMap<String, String>();
         data.put("first", "firstValues");
         return data;
@@ -45,6 +47,7 @@ public class CorolaMappings {
     public
     @ResponseBody
     String multipleSave(@RequestParam("file") MultipartFile[] files) {
+        logger.info("multipleSave/ upload ... ");
         String fileName = null;
         String msg = "";
         BufferedOutputStream buffStream = null;
@@ -78,6 +81,7 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
     public Map<String, String> getBorda(@RequestParam(value = "input") List<String> input) {
+        logger.info("BordaVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 2);
@@ -88,6 +92,7 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/InstantRunOffVotingEndpoint", method = RequestMethod.GET)
     public Map<String, String> getInstantRunOff(@RequestParam(value = "input") List<String> input) {
+        logger.info("InstantRunOffVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 1);
@@ -98,6 +103,7 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/CondorcetVotingEndpoint", method = RequestMethod.GET)
     public Map<String, String> getCondorcet(@RequestParam(value = "input") List<String> input) {
+        logger.info("CondorcetVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 3);
@@ -108,6 +114,7 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/PluralityVotingEndpoint", method = RequestMethod.GET)
     public Map<String, String> getPlurality(@RequestParam(value = "input") List<String> input) {
+        logger.info("PluralityVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
         Poll p = new Poll(input, command, 4);
@@ -118,6 +125,7 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/Auth", method = RequestMethod.GET)
     public Map<String, Boolean> auth(@RequestParam(value = "userName") String username, @RequestParam(value = "password") String password) {
+        logger.info("Auth ... ");
         Map<String, Boolean> data = new HashMap<String, Boolean>();
         com.Corola.licenta.entities.UsersXml usersXml = new com.Corola.licenta.entities.UsersXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Users.xml");
         if (usersXml.checkUserAuth(username, password))
@@ -131,15 +139,37 @@ public class CorolaMappings {
     @Timed
     @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
     public List<Map<String, String>> getUsers() {
+        logger.info("allUsers ... ");
         com.Corola.licenta.entities.UsersXml usersXml = new com.Corola.licenta.entities.UsersXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Users.xml");
 
-        List<Map<String,String>> result = new ArrayList<>();
+        List<Map<String, String>> result = new ArrayList<>();
         List<User> users = usersXml.getUsersList();
         for (int i = 0; i < users.size(); i++) {
             Map<String, String> data = new HashMap<>();
-            data.put("Id",users.get(i).getUserId());
-            data.put("Name",users.get(i).getFirstName() + " " + users.get(i).getLastName());
+            data.put("Id", users.get(i).getUserId());
+            data.put("Name", users.get(i).getFirstName() + " " + users.get(i).getLastName());
             result.add(data);
+        }
+        return result;
+    }
+
+    @Timed
+    @RequestMapping(value = "/allEvents", method = RequestMethod.GET)
+    public List<Event> getAllEvents() {
+        logger.info("allEvents ... ");
+        com.Corola.licenta.entities.EventsXml eventsXml = new com.Corola.licenta.entities.EventsXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Events.xml");
+
+        List<Event> result = new ArrayList<>();
+        List<Event> events = eventsXml.getEventList();
+        for (int i = 0; i < events.size(); i++) {
+            Event event = new Event();
+            event.setEventId(events.get(i).getEventId());
+            event.setEventName(events.get(i).getEventName());
+            event.setEventDescriotion(events.get(i).getEventDescriotion());
+            event.setStatus(events.get(i).getStatus());
+            event.setUserList(events.get(i).getUserList());
+            event.setDates(events.get(i).getDates());
+            result.add(event);
         }
         return result;
     }

@@ -14,9 +14,6 @@ $(function () {
     var allUsers = [];
     $.get("/allUsers", function (data, status) {
         for (var i = 0; i < data.length; i++) {
-            console.log(data[i].Id);
-            console.log(data[i].Name);
-
             children.push({
                 'type': "option",
                 'value': data[i].Id,

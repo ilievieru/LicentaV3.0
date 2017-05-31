@@ -47,10 +47,9 @@ input[type=submit]:hover {
         <label for="users">Add Users</label>
         <div id="users" ng-include="'addUserPopup.html'"></div>
 
-        <div ng-include="'createEventAddDate.html'"></div>
+        <label for="users">Add Date or Dates</label>
+        <div id="calendarDate"> {{testCalendar}}</div>
 
         <input type="submit" value="Submit">
-
-        <a ng-click="addUsers()">Test function for users</a>
     </form>
 </div>

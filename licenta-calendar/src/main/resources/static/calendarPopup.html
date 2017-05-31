@@ -4,20 +4,24 @@
 <div class="w3-container" style="width: 600px;">
     <div class="w3-bar w3-black">
         <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">Create an event</button>
-        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">See all events</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')" ng-click="getAllEvents()">See
+            all events
+        </button>
         <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">My events</button>
     </div>
 
     <div id="London" class="w3-container w3-border city">
         <h2>Create a new event</h2>
-        <p>London is the capital city of England.</p>
-        <button class="button" style="vertical-align:middle">
+        <p>Press add new event button to configure a new event.</p>
+        <button class="button" style="vertical-align:middle" ng-click="displayNewEvent()">
             <span>Add new event </span></button>
-        <div ng-include="'createNewEvent.html'"></div>
+        <div ng-include="'createNewEvent.html'" ng-show="newEvent"></div>
     </div>
 
     <div id="Paris" class="w3-container w3-border city" style="display:none">
         <h2>See all events</h2>
+        <div ng-include="'allEventsList.html'"></div>
+
     </div>
 
     <div id="Tokyo" class="w3-container w3-border city" style="display:none">
@@ -37,7 +41,7 @@
         </div>
         <button class="button" style="vertical-align:middle" ng-click="startProcessing()" ng-show="process">
             <span>Process </span></button>
-        <div id="calendarDate"> {{testCalendar}}</div>
+        <div id="calendarMyDate"> {{testCalendar}}</div>
     </div>
 </div>
 
@@ -55,7 +59,5 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " w3-red";
 }
-
-
 
 </script>

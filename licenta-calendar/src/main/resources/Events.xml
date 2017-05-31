@@ -1,8 +1,12 @@
+<!--status 0: Evenimentul a fost inchis-->
+<!--status 1: Evenimentul este inca deschis inchis-->
+
 <events>
     <event>
         <eventId>1</eventId>
         <name>Event de test</name>
         <description>Description for an test event</description>
+        <status>1</status>
         <users>
             <userId>1</userId>
             <userId>2</userId>
@@ -12,10 +16,12 @@
             <date>02.01.2017</date>
         </dates>
     </event>
+
     <event>
         <eventId>2</eventId>
         <name>Event de test2</name>
         <description>Description for an test2 event</description>
+        <status>0</status>
         <users>
             <userId>1</userId>
         </users>

@@ -1,0 +1,71 @@
+<div style="display:inline">
+    Chose events type:
+    <div class="dropdown">
+        <a class="dropbtn">{{eventType}}</a>
+        <div class="dropdown-content">
+            <a ng-click="allEvents(); choseEventType('ALL')">ALL</a>
+            <a ng-click="choseEventType('Running')">Running</a>
+            <a ng-click="choseEventType('Done')">Done</a>
+        </div>
+    </div>
+</div>
+<div class="alert alert-info" role="alert" ng-repeat="filter in myList.filters"
+     ng-class="{'current' : filter.id == myList.activateFilter.id}">
+    <strong ng-click="activateFilter(filter)" style=""> {{filter.name}}</strong>
+    <div class="bs-docs-example" ng-show="filter.display">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Event Id</th>
+                <th>Event Status</th>
+                <th>Event Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{filter.id}}</td>
+                <td>{{filter.status}}</td>
+                <td>{{filter.description}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bs-docs-example" ng-show="filter.display">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>User First Name</th>
+                <th>Last Name</th>
+                <th>UserName</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in filter.userListFront">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.userName}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bs-docs-example" ng-show="filter.display">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Pick a date for vote</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-attr-id="{{ 'makeItGreen-' + date.id}}" ng-repeat="date in filter.dateValueFront">
+                <td ng-click="clickTest(date)">{{date.date}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="icon-box col-md-3 col-sm-4" ng-click="minimize(filter)" ng-show="filter.display">
+        <a class="agile-icon" href="#angle-double-up">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+    </div>
+</div>

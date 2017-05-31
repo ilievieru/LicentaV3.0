@@ -4,11 +4,25 @@
 var app = angular.module("CVS", ['ngMaterial']);
 app.controller("calendarController", function ($scope, $http) {
     console.log("calendar controller working...");
+
+    var makeItGreenIndex = 0;
+    /*This var is to set up green color on vote. See all events */
     $scope.process = false;
+    /*Show start button*/
+    $scope.newEvent = false;
+    /*Show new event pane*/
+
+    /*Show new event pane*/
+    $scope.displayNewEvent = function () {
+        $scope.newEvent = true;
+    }
+
     $scope.testCalendar = "Selected dates: ";
     $scope.user = "user de test";
     var i = 0;
+    /*Index for dataArray*/
     var dateArray = [];
+    /*Holds dates clicked on calendar*/
     $(document).ready(function () {
         $("#date-popover").popover({html: true, trigger: "manual"});
         $("#date-popover").hide();
@@ -55,6 +69,8 @@ app.controller("calendarController", function ($scope, $http) {
             $scope.dateHistory = date;
         $("#calendarDate").html('You clicked on date ' + $scope.dateHistory);
         $("#calendarDate").show();
+        $("#calendarMyDate").html('You clicked on date ' + $scope.dateHistory);
+        $("#calendarMyDate").show();
         return true;
     }
 
@@ -180,107 +196,81 @@ app.controller("calendarController", function ($scope, $http) {
         }
     }
 
-    $scope.clickTest = function(){
-        console.log("test");
-    }
+    $scope.clickTest = function (filter) {
+        console.log(filter.green);
+        if (filter.green == false) {
+            filter.green = true;
+            document.getElementById("makeItGreen-" + filter.id).onclick = changeColorGreen(filter.id);
+        } else if (filter.green == true) {
+            filter.green = false;
+            document.getElementById("makeItGreen-" + filter.id).onclick = changeColorBlue(filter.id);
 
-    /* add datepicker*/
-    $(function () {
-        initDynamicTimeslots();
-    });
-
-    function initDynamicTimeslots() {
-        // All required jQuery objects
-        $timeslotsContainer = $('#timeslots');
-        $timeslotsTemplate = $('#timeslot-input-box');
-        $timeslot = $('.timeslot');
-        $addTimeslot = $('.addTimeslot');
-        $removeTimeslot = $('.removeTimeslot');
-        $timeslotCounter = $('#timeslotCounter');
-
-        var timeslotCounter = $timeslotsContainer.children().size();
-
-        // Add a timeslot
-        $addTimeslot.click(function (e) {
-            e.preventDefault();
-            var timeslotTemplate = $timeslotsTemplate.html();
-            var $newTimeslot = $(timeslotTemplate.format(timeslotCounter, ""));
-            $newTimeslot.find('input').datepicker();
-            $timeslotsContainer.append($newTimeslot);
-            updateTimeslotCounter(true);
-            checkRemoveDeleteButton($newTimeslot.find($removeTimeslot.selector));
-        });
-
-        // Remove a timeslot
-        $timeslotsContainer.on('click', $removeTimeslot.selector, function (e) {
-            e.preventDefault();
-            if (timeslotCounter > 1) {
-                $(this).parent($timeslot).remove();
-                updateTimeslotCounter(false);
-            }
-
-            checkRemoveDeleteButton($(this));
-        });
-
-        // Add first timeslot
-        if (timeslotCounter === 0) {
-            console.log("Adding first timeslot.");
-            $addTimeslot.trigger('click');
-        }
-
-        // Removes the 'delete' link if there's only 1 input box
-        function checkRemoveDeleteButton($deleteButton) {
-            if (timeslotCounter === 1) {
-                $deleteButton.remove();
-            }
-        }
-
-        // Update counter after add/removing timeslot
-        function updateTimeslotCounter(add) {
-            timeslotCounter = add ? timeslotCounter + 1 : timeslotCounter - 1;
-            $timeslotCounter.val(timeslotCounter);
         }
     }
+    function changeColorGreen(id) {
+        console.log("green");
+        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#7FFFD4";
+        return false;
+    }
 
-    // Add .NET-like string.format to javascript
-    String.prototype.format = function () {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function (match, num) {
-            return typeof args[num] != 'undefined' ? args[num] : match;
-        });
-    };
-    /*---------*/
+    function changeColorBlue(id) {
+        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#d9edf7";
+        return false;
+    }
 
-
-    /*-----User add -----*/
-  $scope.addUsers = function () {
-      $scope.data =  [
-          {
-              "type": "optiongroup",
-              "label": "The Griffins",
-              "children": [
-                  {"type": "option", "value": "Peter", "label": "Peter Griffin"},
-                  {"type": "option", "value": "Lois", "label": "Lois Griffin"},
-                  {"type": "option", "value": "Chris", "label": "Chris Griffin"},
-                  {"type": "option", "value": "Meg", "label": "Meg Griffin"},
-                  {"type": "option", "value": "Stewie", "label": "Stewie Griffin"}
-              ]
-          }];
-      /* users.type = "optiongroup";
-       users.label = "users";
-       users.children.type = "option";
-       users.children.value = "Ilie";
-       users.children.lablel = "Ilie vieru";*/
-      console.log($scope.data);
+    /*------ See all events ----*/
+    $scope.eventType = "none";
+    $scope.choseEventType = function (filter) {
+        $scope.eventType = filter;
+    }
+    $scope.allEvents = function () {
+        var myListData = {filters: []};
         $http({
-                    method: 'GET',
-                    url: '/allUsers'
-                })
-                    .success(function (results) {
-                        console.log(results);
+            method: 'GET',
+            url: '/allEvents'
+        })
+            .success(function (results) {
+                console.log(results);
+                for (var i = 0; i < results.length; i++) {
+                    var datesObject = [];
+                    for (var j = 0; j < results[i].dates.length; j++) {
+                        makeItGreenIndex = makeItGreenIndex + 1;
+                        datesObject.push({
+                            id: makeItGreenIndex,
+                            date: results[i].dates[j],
+                            green: false
+                        });
+                    }
+                    var stringStatus = "";
+                    if (results[i].status == 0) {
+                        stringStatus = "Closed";
+                    }
+                    else {
+                        stringStatus = "Open";
+                    }
+                    myListData.filters.push({
+                        id: results[i].eventId,
+                        description: results[i].eventDescriotion,
+                        status: stringStatus,
+                        name: results[i].eventName,
+                        dateValueFront: datesObject,
+                        userListFront: results[i].userList,
+                        display: false
                     })
-                    .error(function () {
-                        console.log("error");
-                    });
-  }
+                }
+                $scope.myList = myListData;
+            })
+            .error(function () {
+                console.log("error");
+            });
+    }
+
+    $scope.activateFilter = function (filter) {
+        filter.display = true;
+    }
+
+    $scope.minimize = function (filter) {
+        if (filter.display == true)
+            filter.display = false;
+    }
 });

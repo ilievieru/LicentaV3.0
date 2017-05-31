@@ -1,6 +1,5 @@
 package com.Corola.licenta.entities;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -10,16 +9,18 @@ public class Event {
     private String eventId;
     private String eventName;
     private String eventDescriotion;
+    private String status;
     private List<User> userList;
     private List<String> dates;
 
     public Event() {
     }
 
-    public Event(String eventId, String eventName, String eventDescription, List<User> userList, List<String> dates) {
+    public Event(String eventId, String eventName, String eventDescription,String status, List<User> userList, List<String> dates) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDescriotion = eventDescription;
+        this.status = status;
         this.userList = userList;
         this.dates = dates;
     }
@@ -34,6 +35,10 @@ public class Event {
 
     public String getEventDescriotion() {
         return eventDescriotion;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public List<User> getUserList() {
@@ -56,6 +61,10 @@ public class Event {
         this.eventDescriotion = eventDescriotion;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
@@ -67,7 +76,8 @@ public class Event {
     public void afisare() {
         System.out.println("EventId: " + eventId + "\n"
                 + "Event Name: " + eventName + "\n"
-                + "Event Description: " + eventDescriotion);
+                + "Event Description: " + eventDescriotion +"\n"
+                + "Event Status: " + status);
         System.out.println("----------------Users-----------------");
         for (int i = 0; i < userList.size(); i++) {
             userList.get(i).afisare();

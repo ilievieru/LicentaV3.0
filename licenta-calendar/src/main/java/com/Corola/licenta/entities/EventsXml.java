@@ -35,8 +35,9 @@ public class EventsXml {
                 String eventId = event.item(1).getTextContent();
                 String eventName = event.item(3).getTextContent();
                 String eventDescription = event.item(5).getTextContent();
+                String status = event.item(7).getTextContent();
 
-                NodeList eventUsers = event.item(7).getChildNodes();
+                NodeList eventUsers = event.item(9).getChildNodes();
                 List<User> eventsUserList = new ArrayList<>();
                 int userPos = 1;
                 for (int j = 1; j < eventUsers.getLength(); j++) {
@@ -46,7 +47,7 @@ public class EventsXml {
                     }
                 }
 
-                NodeList dates = event.item(9).getChildNodes();
+                NodeList dates = event.item(11).getChildNodes();
                 List<String> datesList = new ArrayList<>();
                 int datePos = 1;
                 for (int j = 1; j < dates.getLength(); j++) {
@@ -55,9 +56,8 @@ public class EventsXml {
                         datePos = datePos + 2;
                     }
                 }
-                Event currentEvent = new Event(eventId,eventName,eventDescription,eventsUserList,datesList);
+                Event currentEvent = new Event(eventId,eventName,eventDescription,status, eventsUserList,datesList);
                 eventList.add(currentEvent);
-                currentEvent.afisare();
             }
         } catch (SAXException e) {
             e.printStackTrace();
@@ -66,5 +66,9 @@ public class EventsXml {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Event> getEventList() {
+        return eventList;
     }
 }
