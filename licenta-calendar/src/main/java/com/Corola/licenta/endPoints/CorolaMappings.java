@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 @RestController
 public class CorolaMappings {
     Logger logger = LoggerFactory.getLogger(CorolaMappings.class);
+    static Map<String, List<String>> datesForVote = new HashMap<>();
 
     @RequestMapping(value = "/secondResources", method = RequestMethod.GET)
     public Map<String, String> getSecondResources() {
@@ -80,23 +81,31 @@ public class CorolaMappings {
 
     @Timed
     @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getBorda(@RequestParam(value = "input") List<String> input) {
+    public Map<String, String> getBorda(@RequestParam(value = "id") List<String> id) {
         logger.info("BordaVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
         String command = "run";
-        Poll p = new Poll(input, command, 2);
+        Poll p = new Poll(id, command, 2);
         data.put("Winner", p.runPool());
         return data;
     }
 
     @Timed
     @RequestMapping(value = "/InstantRunOffVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getInstantRunOff(@RequestParam(value = "input") List<String> input) {
+    public Map<String, String> getInstantRunOff(@RequestParam(value = "id") String id) {
         logger.info("InstantRunOffVotingEndpoint ... ");
+
         Map<String, String> data = new HashMap<String, String>();
+        List<String> voteData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            voteData = DataForVote.datesForVote.get(id);
+        else
+            data.put("Winner", "No data for a winner");
+
         String command = "run";
-        Poll p = new Poll(input, command, 1);
+        Poll p = new Poll(voteData, command, 1);
         data.put("Winner", p.runPool());
+        System.out.println(p.runPool());
         return data;
     }
 
@@ -172,5 +181,28 @@ public class CorolaMappings {
             result.add(event);
         }
         return result;
+    }
+
+    @Timed
+    @RequestMapping(value = "/setDataForVote", method = RequestMethod.GET)
+    public void setDataForVote(@RequestParam(value = "id") String id, @RequestParam(value = "data") String data) {
+        logger.info("setDataForVote ... ");
+        List<String> existingData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            existingData = DataForVote.datesForVote.get(id);
+
+        List<String> newData = new ArrayList<>();
+        if (existingData != null) {
+            for (String dataCursor : existingData) {
+                newData.add(dataCursor);
+            }
+        }
+        if (data != null)
+            newData.add(data);
+
+        DataForVote.datesForVote.put(id, newData);
+        for (String afisareData : newData) {
+            System.out.println(afisareData);
+        }
     }
 }

@@ -42,7 +42,7 @@ public class Poll {
 
         System.out.println("WINNER: " + system.computeWinner());
         System.out.println(system.results());
-        return system.results();
+        return system.computeWinner();
     }
 
     private ArrayList<Ballot> parseInput(List<String> input, String command) {

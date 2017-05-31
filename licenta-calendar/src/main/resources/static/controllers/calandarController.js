@@ -5,8 +5,6 @@ var app = angular.module("CVS", ['ngMaterial']);
 app.controller("calendarController", function ($scope, $http) {
     console.log("calendar controller working...");
 
-    $scope.userName = document.getElementById("userName").value;
-    console.log($scope.userName);
     var makeItGreenIndex = 0;
     /*This var is to set up green color on vote. See all events */
     $scope.process = false;
@@ -91,8 +89,8 @@ app.controller("calendarController", function ($scope, $http) {
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarDate").html('Winner ' + results.Winner);
-                $("#calendarDate").show();
+                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").show();
             })
             .error(function () {
                 console.log("error");
@@ -103,12 +101,12 @@ app.controller("calendarController", function ($scope, $http) {
         $http({
             method: 'GET',
             url: '/InstantRunOffVotingEndpoint',
-            params: {input: dateArray}
+            params: {id: '1'}
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarDate").html('Winner ' + results.Winner);
-                $("#calendarDate").show();
+                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").show();
             })
             .error(function () {
                 console.log("error");
@@ -123,8 +121,8 @@ app.controller("calendarController", function ($scope, $http) {
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarDate").html('Winner ' + results.Winner);
-                $("#calendarDate").show();
+                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").show();
             })
             .error(function () {
                 console.log("error");
@@ -139,8 +137,8 @@ app.controller("calendarController", function ($scope, $http) {
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarDate").html('Winner ' + results.Winner);
-                $("#calendarDate").show();
+                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").show();
             })
             .error(function () {
                 console.log("error");
@@ -199,7 +197,6 @@ app.controller("calendarController", function ($scope, $http) {
     }
 
     $scope.clickTest = function (filter) {
-        console.log(filter.green);
         if (filter.green == false) {
             filter.green = true;
             document.getElementById("makeItGreen-" + filter.id).onclick = changeColorGreen(filter.id);
@@ -208,9 +205,9 @@ app.controller("calendarController", function ($scope, $http) {
             document.getElementById("makeItGreen-" + filter.id).onclick = changeColorBlue(filter.id);
 
         }
+
     }
     function changeColorGreen(id) {
-        console.log("green");
         document.getElementById("makeItGreen-" + id).style.backgroundColor = "#7FFFD4";
         return false;
     }
@@ -220,6 +217,24 @@ app.controller("calendarController", function ($scope, $http) {
         return false;
     }
 
+    $scope.setDataForVote = function (id, data) {
+    console.log(id);
+    console.log(data);
+        $http({
+            method: 'GET',
+            url: '/setDataForVote',
+            params: {
+                id: id,
+                data: data
+            }
+        })
+            .success(function (results) {
+                console.log(results);
+            })
+            .error(function () {
+                console.log("error");
+            });
+    }
     /*------ See all events ----*/
     $scope.eventType = "none";
     $scope.choseEventType = function (filter) {
