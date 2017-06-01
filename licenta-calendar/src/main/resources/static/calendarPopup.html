@@ -39,9 +39,9 @@
                 </div>
             </div>
         </div>
-        <button class="button" style="vertical-align:middle" ng-click="startProcessing()" ng-show="process">
-            <span>Process </span></button>
-        <div id="calendarMyDate"> {{testCalendar}}</div>
+        <div id="calendarMyDate" class="alert alert-success" ng-show="WinnerDiv"></div>
+
+        <div ng-include="'myEvents.html'"></div>
     </div>
 </div>
 

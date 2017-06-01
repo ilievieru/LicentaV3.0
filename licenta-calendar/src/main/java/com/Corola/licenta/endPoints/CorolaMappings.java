@@ -81,11 +81,18 @@ public class CorolaMappings {
 
     @Timed
     @RequestMapping(value = "/BordaVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getBorda(@RequestParam(value = "id") List<String> id) {
+    public Map<String, String> getBorda(@RequestParam(value = "id") String id) {
         logger.info("BordaVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
+
+        List<String> voteData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            voteData = DataForVote.datesForVote.get(id);
+        else
+            data.put("Winner", "No data for a winner");
+
         String command = "run";
-        Poll p = new Poll(id, command, 2);
+        Poll p = new Poll(voteData, command, 2);
         data.put("Winner", p.runPool());
         return data;
     }
@@ -111,22 +118,36 @@ public class CorolaMappings {
 
     @Timed
     @RequestMapping(value = "/CondorcetVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getCondorcet(@RequestParam(value = "input") List<String> input) {
+    public Map<String, String> getCondorcet(@RequestParam(value = "id") String id) {
         logger.info("CondorcetVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
+
+        List<String> voteData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            voteData = DataForVote.datesForVote.get(id);
+        else
+            data.put("Winner", "No data for a winner");
+
         String command = "run";
-        Poll p = new Poll(input, command, 3);
+        Poll p = new Poll(voteData, command, 3);
         data.put("Winner", p.runPool());
         return data;
     }
 
     @Timed
     @RequestMapping(value = "/PluralityVotingEndpoint", method = RequestMethod.GET)
-    public Map<String, String> getPlurality(@RequestParam(value = "input") List<String> input) {
+    public Map<String, String> getPlurality(@RequestParam(value = "id") String id) {
         logger.info("PluralityVotingEndpoint ... ");
         Map<String, String> data = new HashMap<String, String>();
+
+        List<String> voteData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            voteData = DataForVote.datesForVote.get(id);
+        else
+            data.put("Winner", "No data for a winner");
+
         String command = "run";
-        Poll p = new Poll(input, command, 4);
+        Poll p = new Poll(voteData, command, 4);
         data.put("Winner", p.runPool());
         return data;
     }

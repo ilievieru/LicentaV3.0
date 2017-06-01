@@ -1,3 +1,4 @@
+<!-- Mai trebuie lucrat la ea-->
 <div style="display:inline">
     Chose events type:
     <div class="dropdown">
@@ -56,12 +57,13 @@
             </thead>
             <tbody>
             <tr ng-attr-id="{{ 'makeItGreen-' + date.id}}" ng-repeat="date in filter.dateValueFront">
-                <td ng-click="makeItGreenFunctionAllEvents(date,filter.status); setDataForVote(filter.id, date.date)">{{date.date}}</td>
+                <td>{{date.date}}</td>
             </tr>
             </tbody>
         </table>
     </div>
-
+    <button class="button" style="vertical-align:middle" ng-click="startProcessing(filter.id)" ng-show="filter.display">
+        <span>Process </span></button>
     <div class="icon-box col-md-3 col-sm-4" ng-click="minimize(filter)" ng-show="filter.display">
         <a class="agile-icon" href="#angle-double-up">
             <i class="fa fa-angle-double-up"></i>

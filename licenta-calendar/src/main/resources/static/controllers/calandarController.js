@@ -5,14 +5,11 @@ var app = angular.module("CVS", ['ngMaterial']);
 app.controller("calendarController", function ($scope, $http) {
     console.log("calendar controller working...");
 
-    var makeItGreenIndex = 0;
-    /*This var is to set up green color on vote. See all events */
-    $scope.process = false;
     /*Show start button*/
+    var makeItGreenIndex = 0;
+    $scope.WinnerDiv = false;
+    /*Show new event pane*/
     $scope.newEvent = false;
-    /*Show new event pane*/
-
-    /*Show new event pane*/
     $scope.displayNewEvent = function () {
         $scope.newEvent = true;
     }
@@ -60,7 +57,6 @@ app.controller("calendarController", function ($scope, $http) {
         }
         $("#date-popover-content").html('You clicked on date ' + date);
         $("#date-popover").show();
-        $scope.process = true;
         dateArray [i] = date;
         i++;
         if ($scope.dateHistory)
@@ -69,8 +65,6 @@ app.controller("calendarController", function ($scope, $http) {
             $scope.dateHistory = date;
         $("#calendarDate").html('You clicked on date ' + $scope.dateHistory);
         $("#calendarDate").show();
-        $("#calendarMyDate").html('You clicked on date ' + $scope.dateHistory);
-        $("#calendarMyDate").show();
         return true;
     }
 
@@ -81,15 +75,16 @@ app.controller("calendarController", function ($scope, $http) {
         console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
 
-    $scope.startVoteBorda = function () {
+    $scope.startVoteBorda = function (eventId) {
+        $scope.WinnerDiv = true;
         $http({
             method: 'GET',
             url: '/BordaVotingEndpoint',
-            params: {input: dateArray}
+            params: {id: eventId}
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").html('<strong> Winner ' + results.Winner + '</strong>');
                 $("#calendarMyDate").show();
             })
             .error(function () {
@@ -97,15 +92,16 @@ app.controller("calendarController", function ($scope, $http) {
             });
     }
 
-    $scope.startVoteInstantRunOff = function () {
+    $scope.startVoteInstantRunOff = function (eventId) {
+        $scope.WinnerDiv = true;
         $http({
             method: 'GET',
             url: '/InstantRunOffVotingEndpoint',
-            params: {id: '1'}
+            params: {id: eventId}
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").html('<strong> Winner ' + results.Winner + '</strong>');
                 $("#calendarMyDate").show();
             })
             .error(function () {
@@ -113,15 +109,16 @@ app.controller("calendarController", function ($scope, $http) {
             });
     }
 
-    $scope.startVoteCondorcet = function () {
+    $scope.startVoteCondorcet = function (eventId) {
+        $scope.WinnerDiv = true;
         $http({
             method: 'GET',
             url: '/CondorcetVotingEndpoint',
-            params: {input: dateArray}
+            params: {id: eventId}
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").html('<strong> Winner ' + results.Winner + '</strong>');
                 $("#calendarMyDate").show();
             })
             .error(function () {
@@ -129,15 +126,16 @@ app.controller("calendarController", function ($scope, $http) {
             });
     }
 
-    $scope.startVotePlurality = function () {
+    $scope.startVotePlurality = function (eventId) {
+        $scope.WinnerDiv = true;
         $http({
             method: 'GET',
             url: '/PluralityVotingEndpoint',
-            params: {input: dateArray}
+            params: {id: eventId}
         })
             .success(function (results) {
                 console.log(results);
-                $("#calendarMyDate").html('Winner ' + results.Winner);
+                $("#calendarMyDate").html('<strong> Winner ' + results.Winner + '</strong>');
                 $("#calendarMyDate").show();
             })
             .error(function () {
@@ -147,6 +145,7 @@ app.controller("calendarController", function ($scope, $http) {
 
     $scope.inputType = "none";
     $scope.choseInputType = function (input) {
+        $scope.WinnerDiv = false;
         $scope.InstantRunOff = false;
         $scope.Borda = false;
         $scope.Condorcet = false;
@@ -174,52 +173,59 @@ app.controller("calendarController", function ($scope, $http) {
         }
     }
 
-    $scope.startProcessing = function () {
+    $scope.startProcessing = function (eventId) {
         if ($scope.inputType == "InstantRunOff") {
             console.log("InstantRunOff");
-            $scope.startVoteInstantRunOff();
+            $scope.startVoteInstantRunOff(eventId);
         }
         if ($scope.inputType == "Borda") {
             console.log("Borda");
-            $scope.startVoteBorda();
+            $scope.startVoteBorda(eventId);
         }
         if ($scope.inputType == "Condorcet") {
             console.log("Condorcet");
-            $scope.startVoteCondorcet();
+            $scope.startVoteCondorcet(eventId);
         }
         if ($scope.inputType == "Plurality") {
             console.log("Plurality");
-            $scope.startVotePlurality();
+            $scope.startVotePlurality(eventId);
         }
         if ($scope.inputType == "ALL") {
             console.log("ALL");
         }
     }
 
-    $scope.clickTest = function (filter) {
+    $scope.makeItGreenFunctionAllEvents = function (filter, status) {
         if (filter.green == false) {
             filter.green = true;
             document.getElementById("makeItGreen-" + filter.id).onclick = changeColorGreen(filter.id);
         } else if (filter.green == true) {
             filter.green = false;
-            document.getElementById("makeItGreen-" + filter.id).onclick = changeColorBlue(filter.id);
-
+            if (status == "Open") {
+                document.getElementById("makeItGreen-" + filter.id).onclick = changeColorYellow(filter.id);
+            }
+            if (status == "Closed") {
+                document.getElementById("makeItGreen-" + filter.id).onclick = changeColorRed(filter.id);
+            }
         }
 
     }
     function changeColorGreen(id) {
-        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#7FFFD4";
+        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#dff0d8";
         return false;
     }
 
-    function changeColorBlue(id) {
-        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#d9edf7";
+    function changeColorRed(id) {
+        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#f2dede";
+        return false;
+    }
+
+    function changeColorYellow(id) {
+        document.getElementById("makeItGreen-" + id).style.backgroundColor = "#fcf8e3";
         return false;
     }
 
     $scope.setDataForVote = function (id, data) {
-    console.log(id);
-    console.log(data);
         $http({
             method: 'GET',
             url: '/setDataForVote',
@@ -241,13 +247,13 @@ app.controller("calendarController", function ($scope, $http) {
         $scope.eventType = filter;
     }
     $scope.allEvents = function () {
+        var ngClass = "";
         var myListData = {filters: []};
         $http({
             method: 'GET',
             url: '/allEvents'
         })
             .success(function (results) {
-                console.log(results);
                 for (var i = 0; i < results.length; i++) {
                     var datesObject = [];
                     for (var j = 0; j < results[i].dates.length; j++) {
@@ -261,9 +267,12 @@ app.controller("calendarController", function ($scope, $http) {
                     var stringStatus = "";
                     if (results[i].status == 0) {
                         stringStatus = "Closed";
+                        ngClass = "alert-danger";
                     }
                     else {
                         stringStatus = "Open";
+                        ngClass = "alert-warning";
+
                     }
                     myListData.filters.push({
                         id: results[i].eventId,
@@ -272,6 +281,7 @@ app.controller("calendarController", function ($scope, $http) {
                         name: results[i].eventName,
                         dateValueFront: datesObject,
                         userListFront: results[i].userList,
+                        class: ngClass,
                         display: false
                     })
                 }
