@@ -2,6 +2,7 @@ package com.Corola.licenta.endPoints;
 
 import Main.Poll;
 import com.Corola.licenta.entities.Event;
+import com.Corola.licenta.entities.EventsXml;
 import com.Corola.licenta.entities.User;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -13,10 +14,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -187,7 +185,7 @@ public class CorolaMappings {
     @RequestMapping(value = "/allEvents", method = RequestMethod.GET)
     public List<Event> getAllEvents() {
         logger.info("allEvents ... ");
-        com.Corola.licenta.entities.EventsXml eventsXml = new com.Corola.licenta.entities.EventsXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\Events.xml");
+        com.Corola.licenta.entities.EventsXml eventsXml = new com.Corola.licenta.entities.EventsXml("C:\\Users\\p3700664\\IdeaProjects\\LicentaV3.1\\licenta-calendar\\src\\main\\resources\\EventsTest.xml");
 
         List<Event> result = new ArrayList<>();
         List<Event> events = eventsXml.getEventList();
@@ -222,8 +220,36 @@ public class CorolaMappings {
             newData.add(data);
 
         DataForVote.datesForVote.put(id, newData);
-        for (String afisareData : newData) {
+      /*  for (String afisareData : newData) {
             System.out.println(afisareData);
+        }*/
+    }
+
+    @Timed
+    @RequestMapping(value = "/insertEvent", method = RequestMethod.GET)
+    public void insertEvent(@RequestParam(value = "name") String name,
+                            @RequestParam(value = "description") String description,
+                            @RequestParam(value = "users") List<String> users,
+                            @RequestParam(value = "dates") List<String> dates) {
+        logger.info("insertEvent  ... ");
+        Random rand = new Random();
+        int  randomN = rand.nextInt(50) + 1;
+        String eventId =  randomN + "";
+        Event event = new Event();
+        event.setEventId(eventId);
+        event.setEventName(name);
+        event.setEventDescriotion(description);
+        event.setStatus("1");
+        List<User> userList = new ArrayList<>();
+        for (String userId : users){
+            User user = new User();
+            user.setUserId(userId);
+            userList.add(user);
         }
+        event.setUserList(userList);
+        event.setDates(dates);
+
+        EventsXml eventsXml = new EventsXml();
+        eventsXml.insertElement(event);
     }
 }

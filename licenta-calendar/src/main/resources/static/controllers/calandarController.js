@@ -19,6 +19,7 @@ app.controller("calendarController", function ($scope, $http) {
     var i = 0;
     /*Index for dataArray*/
     var dateArray = [];
+    var dateCreateEvent = [];
     /*Holds dates clicked on calendar*/
     $(document).ready(function () {
         $("#date-popover").popover({html: true, trigger: "manual"});
@@ -58,6 +59,7 @@ app.controller("calendarController", function ($scope, $http) {
         $("#date-popover-content").html('You clicked on date ' + date);
         $("#date-popover").show();
         dateArray [i] = date;
+        dateCreateEvent[i] = date;
         i++;
         if ($scope.dateHistory)
             $scope.dateHistory = $scope.dateHistory + "<br> " + date;
@@ -210,6 +212,7 @@ app.controller("calendarController", function ($scope, $http) {
         }
 
     }
+
     function changeColorGreen(id) {
         document.getElementById("makeItGreen-" + id).style.backgroundColor = "#dff0d8";
         return false;
@@ -246,6 +249,7 @@ app.controller("calendarController", function ($scope, $http) {
     $scope.choseEventType = function (filter) {
         $scope.eventType = filter;
     }
+
     $scope.allEvents = function () {
         var ngClass = "";
         var myListData = {filters: []};
@@ -299,5 +303,38 @@ app.controller("calendarController", function ($scope, $http) {
     $scope.minimize = function (filter) {
         if (filter.display == true)
             filter.display = false;
+    }
+
+    $scope.insertEvent = function () {
+        var name = document.getElementById("fname").value;
+        var description = document.getElementById("lname").value;
+        var usersFront = [];
+        var size = users.length;
+        for (var user = 0; user < size; user++) {
+            usersFront.push(users[user].value);
+        }
+        var dateSize = dateCreateEvent.length;
+        var datesFront = [];
+        for (var dateIndex = 0; dateIndex < dateSize; dateIndex++) {
+            datesFront.push(dateCreateEvent[dateIndex]);
+        }
+        $http({
+            method: 'GET',
+            url: '/insertEvent',
+            params: {
+                name: name,
+                description: description,
+                users: usersFront,
+                dates: datesFront
+            }
+        })
+            .success(function (results) {
+                console.log("Event Created");
+
+            })
+            .error(function () {
+                console.log("error");
+            });
+        $scope.newEvent = false;
     }
 });

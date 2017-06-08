@@ -1,7 +1,4 @@
-<!--status 0: Evenimentul a fost inchis-->
-<!--status 1: Evenimentul este inca deschis inchis-->
-
-<events>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><events>
     <event>
         <eventId>1</eventId>
         <name>Event de test</name>
@@ -30,4 +27,4 @@
             <date>12.01.2017</date>
         </dates>
     </event>
-</events>
+<event><eventId>10</eventId><name>Event name 10</name><description>This is another test event</description><status>1</status><users><usersId>1</usersId><usersId>2</usersId></users><dates><date>01.01.2017</date><date>02.01.2017</date><date>03.01.2017</date><date>04.01.2017</date></dates></event><event><eventId>10</eventId><name>Event Ilie</name><description>Primul eveniment creat din formular</description><status>1</status><users><usersId>1</usersId><usersId>2</usersId><usersId>6</usersId></users><dates><date>2017-06-01</date><date>2017-06-02</date><date>2017-06-03</date><date>2017-06-04</date></dates></event></events>

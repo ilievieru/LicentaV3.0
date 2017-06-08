@@ -1,3 +1,4 @@
+var users = [];
 (function ($, window, document) {
     'use strict';
 
@@ -595,6 +596,7 @@
         },
 
         _processSelectOption: function ($option) {
+                                        console.log("_processSelectOption");
             return $.extend({}, this.SOL_OPTION_FORMAT, {
                 value: $option.val(),
                 selected: $option.prop('selected'),
@@ -723,7 +725,6 @@
                 $label,
                 $displayElement,
                 inputName = this._getNameAttribute();
-
             if (this.config.multiple) {
                 // use checkboxes
                 $inputElement = $('<input type="checkbox" class="sol-checkbox"/>');
@@ -870,7 +871,6 @@
             var solOptionItem = $changedItem.data('sol-item'),
                 $existingDisplayItem = solOptionItem.displaySelectionItem,
                 $displayItemText;
-
             if (!$existingDisplayItem) {
                 $displayItemText = $('<span class="sol-selected-display-item-text" />').html(solOptionItem.label);
                 $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
@@ -891,6 +891,7 @@
                 }
 
                 solOptionItem.displaySelectionItem = $existingDisplayItem;
+                users.push(solOptionItem);
             }
         },
 

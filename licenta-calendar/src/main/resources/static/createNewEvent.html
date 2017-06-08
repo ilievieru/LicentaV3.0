@@ -37,7 +37,7 @@ input[type=submit]:hover {
 
 </style>
 <div>
-    <form action="">
+    <form>
         <label for="fname">Event Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your event name...">
 
@@ -47,9 +47,10 @@ input[type=submit]:hover {
         <label for="users">Add Users</label>
         <div id="users" ng-include="'addUserPopup.html'"></div>
 
-        <label for="users">Add Date or Dates</label>
+        <label for="calendarDate">Add Date or Dates</label>
         <div id="calendarDate"> {{testCalendar}}</div>
 
-        <input type="submit" value="Submit">
+        <button class="button" style="vertical-align:middle" ng-click="insertEvent()">
+            <span>Create </span></button>
     </form>
 </div>
