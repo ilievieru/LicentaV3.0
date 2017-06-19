@@ -145,6 +145,26 @@ app.controller("calendarController", function ($scope, $http) {
             });
     }
 
+    $scope.startAllVotes = function (eventId) {
+        $scope.winnerText = "";
+        $scope.WinnerDiv = true;
+        $http({
+            method: 'GET',
+            url: '/getAllMethodsVote',
+            params: {id: eventId}
+        })
+            .success(function (results) {
+                $scope.winnerText = $scope.winnerText + "Borda: " + results.Borda + "<br>";
+                $scope.winnerText = $scope.winnerText + "InstantRunOff: " + results.InstantRunOff + "<br>";
+                $scope.winnerText = $scope.winnerText + "Condorcet: " + results.Condorcet + "<br>";
+                $scope.winnerText = $scope.winnerText + "Plurality: " + results.Plurality + "<br>";
+                $("#calendarMyDate").html('<strong> Winners ' + $scope.winnerText + '</strong>');
+                $("#calendarMyDate").show();
+            })
+            .error(function () {
+                console.log("error");
+            });
+    }
     $scope.inputType = "none";
     $scope.choseInputType = function (input) {
         $scope.WinnerDiv = false;
@@ -194,6 +214,7 @@ app.controller("calendarController", function ($scope, $http) {
         }
         if ($scope.inputType == "ALL") {
             console.log("ALL");
+            $scope.startAllVotes(eventId);
         }
     }
 

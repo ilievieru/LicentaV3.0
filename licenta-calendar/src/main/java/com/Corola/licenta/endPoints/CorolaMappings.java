@@ -151,6 +151,33 @@ public class CorolaMappings {
     }
 
     @Timed
+    @RequestMapping(value = "/getAllMethodsVote", method = RequestMethod.GET)
+    public Map<String, String> getAllMethodsVote(@RequestParam(value = "id") String id) {
+        logger.info("PluralityVotingEndpoint ... ");
+        Map<String, String> data = new HashMap<String, String>();
+
+        List<String> voteData = new ArrayList<>();
+        if (DataForVote.datesForVote != null)
+            voteData = DataForVote.datesForVote.get(id);
+        else
+            data.put("Winner", "No data for a winner");
+
+        String command = "run";
+        Poll p = new Poll(voteData, command, 2);
+        data.put("Borda", p.runPool());
+
+        Poll p1 = new Poll(voteData, command, 1);
+        data.put("InstantRunOff", p1.runPool());
+
+        Poll p2 = new Poll(voteData, command, 3);
+        data.put("Condorcet", p2.runPool());
+
+        Poll p3 = new Poll(voteData, command, 4);
+        data.put("Plurality", p3.runPool());
+        return data;
+    }
+
+    @Timed
     @RequestMapping(value = "/Auth", method = RequestMethod.GET)
     public Map<String, Boolean> auth(@RequestParam(value = "userName") String username, @RequestParam(value = "password") String password) {
         logger.info("Auth ... ");
