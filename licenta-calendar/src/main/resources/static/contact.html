@@ -18,6 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design"/>
     <script type="application/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
     </script>
     <!-- //meta tags -->
     <!--fonts-->
@@ -41,6 +42,7 @@ $(document).ready(function(){
         }
     );
 });
+
 
     </script>
     <!-- //script for smooth drop down-nav -->
@@ -118,8 +120,9 @@ $(document).ready(function(){
         <div class="contact-grids">
             <div class="col-md-7 contact-grid agileinfo-5">
                 <h4>Your Message</h4>
-                <p>Do you have any questions? Do not hesitate to contact us. Use the form below to sent us an email and we will respond
-                as fast as we can.</p>
+                <p>Do you have any questions? Do not hesitate to contact us. Use the form below to sent us an email and
+                    we will respond
+                    as fast as we can.</p>
                 <form action="#" method="post">
                     <label>Name</label>
                     <input type="text" name="Name" placeholder="Your name" required="">
@@ -151,8 +154,20 @@ $(document).ready(function(){
     </div>
 </div>
 <div class="agile-info-map">
-    <iframe src="http://www.mapsdirections.info/en/custom-google-maps/map.php?width=100%&height=600&hl=ru&q=General%20Henri%20Mathias%20Berthelot%2C%20nr.%2016+(CVS)&ie=UTF8&t=&z=15&iwloc=A&output=embed"
-            frameborder="0" style="border:0" allowfullscreen></iframe>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+    <div style='overflow:hidden;height:700px;width:2200px;'>
+        <div id='gmap_canvas' style='height:700px;width:2200px;'></div>
+        <div>
+            <small><a href="http://embedgooglemaps.com">embed google map</a></small>
+        </div>
+        <div>
+            <small><a href="https://googlemapsgenerator.com">embed google maps</a></small>
+        </div>
+        <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+    </div>
+    <script type='text/javascript'>
+        function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(47.173983594056565,27.575431347221414),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(47.173983594056565,27.575431347221414)});infowindow = new google.maps.InfoWindow({content:'<strong>Facultatea de Informatica</strong><br>Street General Henri Mathias Berthelot, nr. 16, Iasi<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+    </script>
 </div>
 <!--contact-->
 <!-- footer -->
@@ -164,7 +179,8 @@ $(document).ready(function(){
                 <li><a href="mainPage.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
-s                <li><a href="contact.html">Contact</a></li>
+                s
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
         <div class="col-md-4 wthree-footer-top">
